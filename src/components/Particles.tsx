@@ -1,19 +1,41 @@
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Particle = {
   x: number;
   y: number;
   size: number;
-  speedX: number;
-  speedY: number;
-  opacity: number;
+  vx: number;
+  vy: number;
 };
 
 const Particles = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particles = useRef<Particle[]>([]);
   const animationFrameId = useRef<number>(0);
+  const mousePosition = useRef<{ x: number; y: number } | null>(null);
+  const [isInitialized, setIsInitialized] = useState(false);
+  
+  // Initialize particles
+  const initParticles = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    particles.current = [];
+    const particleCount = Math.min(100, Math.floor(window.innerWidth * 0.04));
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.current.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.5 + 0.5,
+        vx: 0,
+        vy: 0
+      });
+    }
+    
+    setIsInitialized(true);
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,23 +48,25 @@ const Particles = () => {
       if (canvas) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        initParticles();
+        if (isInitialized) {
+          initParticles();
+        }
       }
     };
 
-    const initParticles = () => {
-      particles.current = [];
-      const particleCount = Math.floor(window.innerWidth * 0.05); // Adjust density based on screen width
-      
-      for (let i = 0; i < particleCount; i++) {
-        particles.current.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.3,
-          speedY: (Math.random() - 0.5) * 0.3,
-          opacity: Math.random() * 0.5 + 0.2,
-        });
+    const handleMouseMove = (e: MouseEvent) => {
+      mousePosition.current = {
+        x: e.clientX,
+        y: e.clientY
+      };
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mousePosition.current = {
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY
+        };
       }
     };
 
@@ -50,64 +74,65 @@ const Particles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particles.current.forEach((particle) => {
+        // Calculate direction to mouse with easing
+        if (mousePosition.current) {
+          const dx = mousePosition.current.x - particle.x;
+          const dy = mousePosition.current.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          // Only move particles within a certain range of the mouse
+          if (distance < 300) {
+            const influenceFactor = 0.01 * (1 - distance / 300);
+            particle.vx = particle.vx * 0.92 + dx * influenceFactor;
+            particle.vy = particle.vy * 0.92 + dy * influenceFactor;
+          } else {
+            // Gradually slow down particles outside the mouse influence
+            particle.vx *= 0.98;
+            particle.vy *= 0.98;
+          }
+        } else {
+          // No mouse interaction, slowly come to a stop
+          particle.vx *= 0.95;
+          particle.vy *= 0.95;
+        }
+        
         // Update position
-        particle.x += particle.speedX;
-        particle.y += particle.speedY;
+        particle.x += particle.vx;
+        particle.y += particle.vy;
         
-        // Wrap around screen edges
-        if (particle.x > canvas.width) particle.x = 0;
-        else if (particle.x < 0) particle.x = canvas.width;
-        
-        if (particle.y > canvas.height) particle.y = 0;
-        else if (particle.y < 0) particle.y = canvas.height;
+        // Handle edge cases
+        if (particle.x < 0) particle.x = 0;
+        if (particle.x > canvas.width) particle.x = canvas.width;
+        if (particle.y < 0) particle.y = 0;
+        if (particle.y > canvas.height) particle.y = canvas.height;
         
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
         ctx.fill();
       });
-      
-      // Draw connections between nearby particles
-      drawConnections(ctx);
       
       animationFrameId.current = requestAnimationFrame(animate);
     };
 
-    const drawConnections = (ctx: CanvasRenderingContext2D) => {
-      const connectionDistance = 150; // Maximum distance for connection
-      
-      for (let i = 0; i < particles.current.length; i++) {
-        for (let j = i + 1; j < particles.current.length; j++) {
-          const dx = particles.current[i].x - particles.current[j].x;
-          const dy = particles.current[i].y - particles.current[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < connectionDistance) {
-            // Calculate opacity based on distance
-            const opacity = 1 - (distance / connectionDistance);
-            
-            ctx.beginPath();
-            ctx.moveTo(particles.current[i].x, particles.current[i].y);
-            ctx.lineTo(particles.current[j].x, particles.current[j].y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.15})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-    };
-
+    // Set up event listeners and start animation
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
     
+    initParticles();
     animate();
 
+    // Clean up
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       cancelAnimationFrame(animationFrameId.current);
     };
-  }, []);
+  }, [isInitialized]);
 
   return (
     <canvas
