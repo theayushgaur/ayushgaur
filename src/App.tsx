@@ -17,6 +17,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <div className="bg-noise" aria-hidden="true" />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
