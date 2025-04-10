@@ -7,6 +7,8 @@ type Particle = {
   size: number;
   vx: number;
   vy: number;
+  baseVx: number;
+  baseVy: number;
 };
 
 const Particles = () => {
@@ -22,15 +24,21 @@ const Particles = () => {
     if (!canvas) return;
     
     particles.current = [];
-    const particleCount = Math.min(100, Math.floor(window.innerWidth * 0.04));
+    const particleCount = Math.min(150, Math.floor(window.innerWidth * 0.05));
     
     for (let i = 0; i < particleCount; i++) {
+      // Create random gentle drift for each particle
+      const baseVx = (Math.random() - 0.5) * 0.2;
+      const baseVy = (Math.random() - 0.5) * 0.2;
+      
       particles.current.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.5 + 0.5,
-        vx: 0,
-        vy: 0
+        size: Math.random() * 1.2 + 0.5,
+        vx: baseVx,
+        vy: baseVy,
+        baseVx: baseVx,
+        baseVy: baseVy
       });
     }
     
@@ -74,42 +82,40 @@ const Particles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particles.current.forEach((particle) => {
-        // Calculate direction to mouse with easing
+        // Default movement - gentle floating
+        particle.vx = particle.baseVx;
+        particle.vy = particle.baseVy;
+        
+        // Very subtle influence from cursor with much lower intensity
         if (mousePosition.current) {
           const dx = mousePosition.current.x - particle.x;
           const dy = mousePosition.current.y - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          // Only move particles within a certain range of the mouse
-          if (distance < 300) {
-            const influenceFactor = 0.01 * (1 - distance / 300);
-            particle.vx = particle.vx * 0.92 + dx * influenceFactor;
-            particle.vy = particle.vy * 0.92 + dy * influenceFactor;
-          } else {
-            // Gradually slow down particles outside the mouse influence
-            particle.vx *= 0.98;
-            particle.vy *= 0.98;
+          // Only slightly influence particles within a certain range of the mouse
+          if (distance < 200) {
+            // Much lower influence factor (reduced by 5x)
+            const influenceFactor = 0.002 * (1 - distance / 200);
+            particle.vx += dx * influenceFactor;
+            particle.vy += dy * influenceFactor;
           }
-        } else {
-          // No mouse interaction, slowly come to a stop
-          particle.vx *= 0.95;
-          particle.vy *= 0.95;
         }
         
         // Update position
         particle.x += particle.vx;
         particle.y += particle.vy;
         
-        // Handle edge cases
-        if (particle.x < 0) particle.x = 0;
-        if (particle.x > canvas.width) particle.x = canvas.width;
-        if (particle.y < 0) particle.y = 0;
-        if (particle.y > canvas.height) particle.y = canvas.height;
+        // Wrap around edges instead of stopping
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+        if (particle.y > canvas.height) particle.y = 0;
         
-        // Draw particle
+        // Draw particle with slightly varying opacity for starry effect
+        const opacity = 0.6 + Math.random() * 0.4;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
         ctx.fill();
       });
       
