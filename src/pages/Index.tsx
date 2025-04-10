@@ -12,7 +12,7 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Particles />
       <Navbar />
-      <main>
+      <main className="flex flex-col items-center">
         <Hero />
         <Projects />
         <About />

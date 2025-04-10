@@ -20,10 +20,10 @@ const Hero = () => {
   return (
     <div
       ref={heroRef}
-      className="min-h-screen flex flex-col justify-center relative px-4 md:px-6"
+      className="min-h-screen flex flex-col justify-center items-center relative px-4 md:px-6"
     >
       <div
-        className={`max-w-3xl transition-all duration-1000 ease-out ${
+        className={`max-w-3xl mx-auto text-center transition-all duration-1000 ease-out ${
           isVisible ? "opacity-100" : "opacity-0 translate-y-8"
         }`}
       >
@@ -35,7 +35,7 @@ const Hero = () => {
           working on developer infrastructure products. I'm currently building
           a new platform for server-side components.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 justify-center">
           <a
             href="https://github.com"
             target="_blank"
