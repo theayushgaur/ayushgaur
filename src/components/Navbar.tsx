@@ -1,13 +1,19 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = offset / height;
+      
+      setScrollProgress(progress);
+      
       if (offset > 50) {
         setScrolled(true);
       } else {
@@ -21,13 +27,28 @@ const Navbar = () => {
     };
   }, []);
 
+  const scrollToSection = (id: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 100,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const navbarHeight = scrolled ? "py-3" : "py-5";
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/90 backdrop-blur-md py-3" : "bg-transparent py-5"
+        scrolled 
+          ? "bg-background/70 backdrop-blur-md shadow-sm" 
+          : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <div className={`container mx-auto px-4 md:px-6 flex items-center justify-between ${navbarHeight}`}>
         <Link 
           to="/" 
           className="text-lg font-medium hover:opacity-80 transition-opacity"
@@ -36,18 +57,41 @@ const Navbar = () => {
         </Link>
         
         <nav className="hidden md:flex space-x-8">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <a 
+            href="#" 
+            onClick={scrollToSection("home")}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
             Home
-          </Link>
-          <Link to="/projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          </a>
+          <a 
+            href="#experience" 
+            onClick={scrollToSection("experience")}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Experience
+          </a>
+          <a 
+            href="#projects" 
+            onClick={scrollToSection("projects")}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
             Projects
-          </Link>
-          <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          </a>
+          <a 
+            href="#about" 
+            onClick={scrollToSection("about")}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
             About
-          </Link>
-          <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          </a>
+          <a 
+            href="#contact" 
+            onClick={scrollToSection("contact")}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
             Contact
-          </Link>
+          </a>
         </nav>
         
         <button className="md:hidden text-foreground">
@@ -58,6 +102,13 @@ const Navbar = () => {
           </svg>
         </button>
       </div>
+      
+      {/* Colorful progress bar positioned below the navbar */}
+      <ScrollProgress 
+        height={2.5}
+        gradient={true}
+        position="bottom"
+      />
     </header>
   );
 };

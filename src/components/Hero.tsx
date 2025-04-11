@@ -1,24 +1,52 @@
-
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
+  const fullText = "Software engineer, founder, and amateur astronaut.";
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+  
+  // Typing animation effect
+  useEffect(() => {
+    if (typedText.length < fullText.length) {
+      const timeout = setTimeout(() => {
+        setTypedText(fullText.slice(0, typedText.length + 1));
+      }, 50);
+      return () => clearTimeout(timeout);
+    } else {
+      setIsTypingComplete(true);
+    }
+  }, [typedText, fullText]);
+  
+  // Blinking cursor effect
+  useEffect(() => {
+    if (isTypingComplete) {
+      const interval = setInterval(() => {
+        setShowCursor(prev => !prev);
+      }, 500);
+      return () => clearInterval(interval);
+    }
+  }, [isTypingComplete]);
 
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById("projects");
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth" });
+  const scrollToExperience = () => {
+    const experienceSection = document.getElementById("experience");
+    if (experienceSection) {
+      experienceSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <div
+      id="home"
       ref={heroRef}
       className="min-h-screen flex flex-col justify-center items-center relative px-4 md:px-6"
     >
@@ -28,7 +56,8 @@ const Hero = () => {
         }`}
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance">
-          Software engineer, founder, and amateur astronaut.
+          {typedText}
+          <span className={`${showCursor ? 'opacity-100' : 'opacity-0'}`}>|</span>
         </h1>
         <p className="text-xl text-muted-foreground mb-8 text-balance">
           I'm Andreas, a software engineer and entrepreneur. I'm the founder of Chronark, where we're
@@ -40,33 +69,90 @@ const Hero = () => {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 border border-secondary rounded hover:bg-secondary/20 transition-colors duration-300 text-sm"
+            className="group relative flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
           >
+            <span
+              className={cn(
+                "absolute inset-0 block h-full w-full animate-gradient rounded-[inherit] bg-gradient-to-r from-[#ffaa40]/50 via-[#9c40ff]/50 to-[#ffaa40]/50 bg-[length:300%_100%] p-[1px]",
+              )}
+              style={{
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "subtract",
+                WebkitClipPath: "padding-box",
+              }}
+            />
             <Github className="mr-2 h-4 w-4" />
-            GitHub
+            <AnimatedGradientText className="text-sm font-medium">
+              GitHub
+            </AnimatedGradientText>
+            <ChevronRight
+              className="ml-1 size-4 stroke-neutral-500 transition-transform
+                duration-300 ease-in-out group-hover:translate-x-0.5"
+            />
           </a>
           <a
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 border border-secondary rounded hover:bg-secondary/20 transition-colors duration-300 text-sm"
+            className="group relative flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
           >
+            <span
+              className={cn(
+                "absolute inset-0 block h-full w-full animate-gradient rounded-[inherit] bg-gradient-to-r from-[#1da1f2]/50 via-[#1a8cd8]/50 to-[#1da1f2]/50 bg-[length:300%_100%] p-[1px]",
+              )}
+              style={{
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "subtract",
+                WebkitClipPath: "padding-box",
+              }}
+            />
             <Twitter className="mr-2 h-4 w-4" />
-            Twitter
+            <AnimatedGradientText className="text-sm font-medium">
+              Twitter
+            </AnimatedGradientText>
+            <ChevronRight
+              className="ml-1 size-4 stroke-neutral-500 transition-transform
+                duration-300 ease-in-out group-hover:translate-x-0.5"
+            />
           </a>
           <a
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 border border-secondary rounded hover:bg-secondary/20 transition-colors duration-300 text-sm"
+            className="group relative flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
           >
+            <span
+              className={cn(
+                "absolute inset-0 block h-full w-full animate-gradient rounded-[inherit] bg-gradient-to-r from-[#0077b5]/50 via-[#0a66c2]/50 to-[#0077b5]/50 bg-[length:300%_100%] p-[1px]",
+              )}
+              style={{
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "destination-out",
+                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "subtract",
+                WebkitClipPath: "padding-box",
+              }}
+            />
             <Linkedin className="mr-2 h-4 w-4" />
-            LinkedIn
+            <AnimatedGradientText className="text-sm font-medium">
+              LinkedIn
+            </AnimatedGradientText>
+            <ChevronRight
+              className="ml-1 size-4 stroke-neutral-500 transition-transform
+                duration-300 ease-in-out group-hover:translate-x-0.5"
+            />
           </a>
         </div>
       </div>
       <button
-        onClick={scrollToProjects}
+        onClick={scrollToExperience}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
         aria-label="Scroll down"
       >

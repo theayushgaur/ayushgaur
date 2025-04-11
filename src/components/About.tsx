@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 
 const About = () => {
@@ -30,7 +29,7 @@ const About = () => {
   }, []);
 
   return (
-    <section className="py-16 px-4 md:px-6">
+    <section id="about" className="py-16 px-4 md:px-6">
       <div className="container mx-auto">
         <div
           ref={sectionRef}

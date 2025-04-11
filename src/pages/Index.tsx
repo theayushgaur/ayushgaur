@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
@@ -6,6 +5,7 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Particles from "@/components/Particles";
+import Experience from "@/components/Experience";
 
 const Index = () => {
   return (
@@ -14,6 +14,7 @@ const Index = () => {
       <Navbar />
       <main className="flex flex-col items-center">
         <Hero />
+        <Experience />
         <Projects />
         <About />
         <Contact />
