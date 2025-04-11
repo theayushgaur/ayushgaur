@@ -1,73 +1,99 @@
-# Welcome to your Lovable project
+# Ayush Gaur Portfolio Website
 
-## Project info
+A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. This project showcases my skills, experience, and projects with interactive elements and smooth animations.
 
-**URL**: https://lovable.dev/projects/24b48526-e162-49c5-81cb-1a27a72da637
+![Portfolio Preview](preview.png)
 
-## How can I edit this code?
+## 🌟 Features
 
-There are several ways of editing your application.
+- **Modern Design**: Clean, professional layout with responsive design for all devices
+- **Dark/Light Mode**: Toggle between dark and light themes
+- **Interactive Elements**:
+  - Animated gradient text
+  - Hover effects on components
+  - Smooth scrolling navigation
+  - Rainbow gradient buttons
+  - Animated background particles
+- **Performance Optimized**: Fast loading and smooth animations
+- **Component-Based Architecture**: Modular and maintainable code structure
 
-**Use Lovable**
+## 🛠️ Technology Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/24b48526-e162-49c5-81cb-1a27a72da637) and start prompting.
+- **Frontend Framework**: React with TypeScript
+- **Styling**: Tailwind CSS with custom components
+- **Animation**: Framer Motion
+- **UI Components**: Custom components with Magic UI inspiration
+- **Routing**: React Router
+- **State Management**: React Hooks
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Sections
 
-**Use your preferred IDE**
+- **Hero**: Introduction with animated text and social links
+- **Experience**: Professional work history and achievements
+- **Projects**: Featured projects with descriptions and links
+- **Skills**: Programming languages, frameworks, tools, and certifications
+- **Volunteering**: Leadership and volunteering experience
+- **Contact**: Ways to get in touch
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🔧 Installation and Setup
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
 
-Follow these steps:
+   ```bash
+   git clone https://github.com/theayushgaur/flutter-web-canvas.git
+   cd flutter-web-canvas
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Install dependencies:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+   ```bash
+   npm install
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+3. Run the development server:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
-**Edit a file directly in GitHub**
+4. Build for production:
+   ```bash
+   npm run build
+   ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🎨 Customization
 
-**Use GitHub Codespaces**
+The website is designed to be easily customizable:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Edit content in the respective component files
+- Modify theme colors in `tailwind.config.ts`
+- Update animations and transitions in component files
+- Add new sections by creating additional components
 
-## What technologies are used for this project?
+## 📱 Responsive Design
 
-This project is built with:
+The website is fully responsive and optimized for:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Desktops
+- Tablets
+- Mobile devices
 
-## How can I deploy this project?
+## 🌐 Live Demo
 
-Simply open [Lovable](https://lovable.dev/projects/24b48526-e162-49c5-81cb-1a27a72da637) and click on Share -> Publish.
+Check out the live demo [here](https://ayushgaur.com)
 
-## Can I connect a custom domain to my Lovable project?
+## 📄 License
 
-Yes it is!
+This project is open source and available under the [MIT License](LICENSE).
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📬 Contact
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Feel free to reach out if you have questions or want to connect!
+
+- Twitter: [@ayushgaur](https://twitter.com/ayushgaur)
+- GitHub: [theayushgaur](https://github.com/theayushgaur)
+- LinkedIn: [Ayush Gaur](https://linkedin.com/in/ayushgaur)
+
+---
+
+Designed & developed with ❤️ by Ayush Gaur
