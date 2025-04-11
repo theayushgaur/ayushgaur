@@ -5,19 +5,19 @@ const projectsData = [
     title: "Dart'n Doom",
     description: "A fast-paced 2D action game built with Flutter and Flame engine, featuring retro-inspired graphics and responsive gameplay mechanics.",
     tags: ["Flutter", "Flame", "Dart", "Game Development"],
-    link: "/projects/dartn-doom"
+    link: "https://github.com/theayushgaur/Dart-n-Doom"
   },
   {
     title: "VRPlaced",
     description: "State-of-the-art AI-driven virtual interview application utilizing OpenAI APIs and Unity 3D, helping candidates improve interview success rates.",
     tags: ["Flutter", "Unity 3D", "OpenAI", "Firebase"],
-    link: "/projects/vrplaced"
+    link: "https://vrplaced.ai/"
   },
   {
     title: "Cybria",
     description: "An AI-powered online assistant app made with Flutter. Integrates ChatGPT and DALL·E 2 LLM models for dynamic chat-based interactions and creative AI-generated visuals.",
     tags: ["Flutter", "ChatGPT API", "DALL·E 2", "AI Assistant"],
-    link: "/projects/cybria"
+    link: "https://github.com/theayushgaur/Cybria"
   },
   {
     title: "Quvi Service App",
@@ -27,25 +27,25 @@ const projectsData = [
   },
   {
     title: "AnswerFlux",
-    description: "An interactive Q&A platform that uses machine learning to provide accurate answers and recommendations based on user questions and browsing patterns.",
+    description: "Developed a cross-platform AI-powered Q&A app using Flutter for the frontend and FastAPI with Gemini AI for natural language processing. The stack also includes a custom Travily server, all-MiniLM-L6-v2 Sentence Transformer for semantic search, and websockets for real-time communication.",
     tags: ["Flutter", "ML", "Firebase", "REST API"],
     link: "/projects/answerflux"
   },
   {
-    title: "Portfolio Website",
+    title: "Personal Portfolio Website",
     description: "A modern, responsive portfolio website built with React, TailwindCSS, and Framer Motion. Features smooth animations, dark mode, and interactive UI components.",
     tags: ["React", "TailwindCSS", "Framer Motion", "TypeScript"],
-    link: "/projects/portfolio"
+    link: "https://github.com/theayushgaur/flutter-web-canvas"
   },
   {
     title: "Insightopia",
-    description: "A data visualization and analytics platform that transforms complex datasets into intuitive, interactive visual representations for better decision-making.",
+    description: " A Flutter-based news reader app built in my personal time. It fetches international news via NewsAPI, displays headlines by category/country, and allows reading full articles in-app. Features include Firebase authentication, personalized notifications, Provider for state management, and light/dark themes designed in Figma. This project enhanced my skills in Flutter, APIs, and mobile development practices.",
     tags: ["Flutter", "Data Visualization", "Rest API", "Charts"],
     link: "/projects/insightopia"
   },
   {
     title: "Monstarev",
-    description: "A gamified productivity app that helps users build habits and achieve goals through monster collection and evolution mechanics.",
+    description: "Designed a web app featuring 20+ reusable animated components built with Flutter, saving developers 100+hours of coding.",
     tags: ["Flutter", "Gamification", "Firebase", "Provider"],
     link: "/projects/monstarev"
   },
@@ -53,7 +53,7 @@ const projectsData = [
     title: "Docker Flutter Integration",
     description: "A comprehensive solution for containerizing Flutter applications, enabling consistent development environments and simplified CI/CD pipelines.",
     tags: ["Docker", "Flutter", "DevOps", "CI/CD"],
-    link: "/projects/docker-flutter"
+    link: "https://github.com/theayushgaur/DockerFlutterWebsite"
   }
 ];
 

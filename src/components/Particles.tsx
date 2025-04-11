@@ -1,5 +1,5 @@
-
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 
 type Particle = {
   x: number;
@@ -17,6 +17,7 @@ const Particles = () => {
   const animationFrameId = useRef<number>(0);
   const mousePosition = useRef<{ x: number; y: number } | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
+  const { theme } = useTheme();
   
   // Initialize particles
   const initParticles = () => {
@@ -81,6 +82,10 @@ const Particles = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      // Determine particle color based on theme
+      const particleColor = theme === "dark" ? "255, 255, 255" : "0, 0, 0";
+      const opacityBase = theme === "dark" ? 0.6 : 0.3;
+      
       particles.current.forEach((particle) => {
         // Default movement - gentle floating
         particle.vx = particle.baseVx;
@@ -112,10 +117,10 @@ const Particles = () => {
         if (particle.y > canvas.height) particle.y = 0;
         
         // Draw particle with slightly varying opacity for starry effect
-        const opacity = 0.6 + Math.random() * 0.4;
+        const opacity = opacityBase + Math.random() * 0.4;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.fillStyle = `rgba(${particleColor}, ${opacity})`;
         ctx.fill();
       });
       
@@ -138,7 +143,7 @@ const Particles = () => {
       window.removeEventListener("touchmove", handleTouchMove);
       cancelAnimationFrame(animationFrameId.current);
     };
-  }, [isInitialized]);
+  }, [isInitialized, theme]);
 
   return (
     <canvas

@@ -9,7 +9,7 @@ const Hero = () => {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
-  const fullText = "Software engineer, founder, and amateur astronaut.";
+  const fullText = "Software engineer, Flutter Developer, and Motorsport enthusiast.";
 
   useEffect(() => {
     setIsVisible(true);
@@ -60,13 +60,11 @@ const Hero = () => {
           <span className={`${showCursor ? 'opacity-100' : 'opacity-0'}`}>|</span>
         </h1>
         <p className="text-xl text-muted-foreground mb-8 text-balance">
-          I'm Andreas, a software engineer and entrepreneur. I'm the founder of Chronark, where we're
-          working on developer infrastructure products. I'm currently building
-          a new platform for server-side components.
+        Hi, I'm Ayush. I sling Dart code for Flutter like it's going out of style (it's not), but I'm no one-trick pony – I build native iOS and Android apps too. I've wrangled AI, streamlined workflows, and even led a few developer legions. Basically, I make cool stuff for phones, whether it's cross-platform or native. Want proof? Keep scrolling. 
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
           <a
-            href="https://github.com"
+            href="https://github.com/theayushgaur"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
@@ -94,7 +92,7 @@ const Hero = () => {
             />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://x.com/theayushgaur"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"
@@ -122,7 +120,7 @@ const Hero = () => {
             />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/theayushgaur/"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative flex items-center justify-center rounded-full px-4 py-1.5 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f]"

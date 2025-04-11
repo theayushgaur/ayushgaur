@@ -35,7 +35,7 @@ export function ScrollProgress({
         "left-0 right-0 z-50",
         isFixed ? "fixed" : "absolute",
         position === "top" ? "top-0" : "bottom-0",
-        gradient && "bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500",
+        gradient && "bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500",
         className
       )}
       style={{
