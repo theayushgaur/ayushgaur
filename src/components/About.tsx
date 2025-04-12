@@ -1,63 +1,64 @@
-import { useEffect, useRef } from "react";
 
-const Volunteering = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100");
-            entry.target.classList.remove("translate-y-4");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+import { Section } from "@/components/ui/section";
+import { Card, CardContent } from "@/components/ui/card";
+import { Users, Award } from "lucide-react";
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
+const About = () => {
   return (
-    <section id="volunteering" className="py-16 px-4 md:px-6">
-      <div className="container mx-auto">
-        <div
-          ref={sectionRef}
-          className="max-w-3xl mx-auto opacity-0 translate-y-4 transition-all duration-700"
-        >
-          <h2 className="text-3xl font-bold mb-6 border-b border-gray-800 pb-2">Volunteering & Leadership Experience</h2>
-          
-          <div className="mb-8">
-            <h3 className="text-xl font-bold mb-2">Core Team Member at OpinHacks Hackathon</h3>
-            <ul className="list-disc list-inside pl-4 space-y-2">
-              <li className="text-lg text-muted-foreground">
-                Organized a hackathon with over 250 participants, fostering innovation and teamwork.
+    <Section 
+      id="about" 
+      title="Community Involvement"
+      subtitle="My contributions to developer communities and leadership roles."
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Award className="h-6 w-6 text-primary" />
+              <h3 className="text-xl font-bold">Core Team Member at OpinHacks Hackathon</h3>
+            </div>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+                <span className="text-muted-foreground">
+                  Organized a hackathon with over 250 participants, fostering innovation and teamwork.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+                <span className="text-muted-foreground">
+                  Collaborated with sponsors and mentors to create an enriching event experience.
+                </span>
               </li>
             </ul>
-          </div>
-          
-          <div className="mb-8">
-            <h3 className="text-xl font-bold mb-2">Flutter Lead at Google Developer Student Club (GDSC)</h3>
-            <ul className="list-disc list-inside pl-4 space-y-2">
-              <li className="text-lg text-muted-foreground">
-                Led training sessions for more than 200 students on Flutter app development and development principles.
+          </CardContent>
+        </Card>
+        
+        <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Users className="h-6 w-6 text-primary" />
+              <h3 className="text-xl font-bold">Flutter Lead at Google Developer Student Club</h3>
+            </div>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+                <span className="text-muted-foreground">
+                  Led training sessions for more than 200 students on Flutter app development.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0"></span>
+                <span className="text-muted-foreground">
+                  Facilitated workshops and hands-on coding sessions to build practical skills.
+                </span>
               </li>
             </ul>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
-    </section>
+    </Section>
   );
 };
 
-export default Volunteering;
+export default About;

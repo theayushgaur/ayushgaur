@@ -1,64 +1,80 @@
-import { useEffect, useRef } from "react";
+
+import { Section } from "@/components/ui/section";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Twitter, Github, Linkedin } from "lucide-react";
 import { AnimatedGradientText } from "@/components/magicui/animated-gradient-text";
 
 const Contact = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100");
-            entry.target.classList.remove("translate-y-4");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section className="py-24 px-4 md:px-6" id="contact">
-      <div className="container mx-auto">
-        <div
-          ref={sectionRef}
-          className="max-w-3xl mx-auto text-center opacity-0 translate-y-4 transition-all duration-700"
-        >
-          <div className="inline-block px-6 py-2 mb-8 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-            <span className="text-base font-medium text-foreground">Contact</span>
+    <Section 
+      id="contact" 
+      title="Get in Touch"
+      subtitle="Want to work together or have a question? Reach out through any of these channels."
+    >
+      <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm">
+        <CardContent className="p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <p className="text-xl mb-6">
+                Want to chat? Just shoot me a DM{" "}
+                <a 
+                  href="https://x.com/theayushgaur" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block"
+                >
+                  <AnimatedGradientText className="font-medium">
+                    with a direct question on Twitter
+                  </AnimatedGradientText>
+                </a>{" "}
+                and I'll respond whenever I can.
+              </p>
+              <p className="text-muted-foreground">I will ignore all soliciting.</p>
+            </div>
+            
+            <div className="space-y-4">
+              <a 
+                href="mailto:contact@ayushgaur.dev" 
+                className="flex items-center gap-3 p-3 rounded-lg transition-colors hover:bg-secondary/30"
+              >
+                <Mail className="h-5 w-5 text-primary" />
+                <span>contact@ayushgaur.dev</span>
+              </a>
+              
+              <a 
+                href="https://twitter.com/theayushgaur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-3 p-3 rounded-lg transition-colors hover:bg-secondary/30"
+              >
+                <Twitter className="h-5 w-5 text-primary" />
+                <span>@theayushgaur</span>
+              </a>
+              
+              <a 
+                href="https://github.com/theayushgaur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-3 p-3 rounded-lg transition-colors hover:bg-secondary/30"
+              >
+                <Github className="h-5 w-5 text-primary" />
+                <span>theayushgaur</span>
+              </a>
+              
+              <a 
+                href="https://linkedin.com/in/theayushgaur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-3 p-3 rounded-lg transition-colors hover:bg-secondary/30"
+              >
+                <Linkedin className="h-5 w-5 text-primary" />
+                <span>theayushgaur</span>
+              </a>
+            </div>
           </div>
-          
-          <h2 className="text-5xl md:text-6xl font-bold mb-12">Get in Touch</h2>
-          
-          <p className="text-xl text-muted-foreground mb-4">
-            Want to chat? Just shoot me a dm{" "}
-            <a 
-              href="https://x.com/theayushgaur" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block"
-            >
-              <AnimatedGradientText className="font-medium">
-                with a direct question on twitter
-              </AnimatedGradientText>
-            </a>{" "}
-            and I'll respond whenever I can. I will ignore all soliciting.
-          </p>
-        </div>
-      </div>
-    </section>
+        </CardContent>
+      </Card>
+    </Section>
   );
 };
 

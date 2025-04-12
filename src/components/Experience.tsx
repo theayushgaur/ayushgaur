@@ -1,4 +1,6 @@
-import { CalendarIcon, BriefcaseIcon, MapPinIcon } from "lucide-react";
+import { CalendarIcon, MapPinIcon } from "lucide-react";
+import { Section } from "@/components/ui/section";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ExperienceItem {
   title: string;
@@ -60,57 +62,58 @@ const experiences: ExperienceItem[] = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="w-full max-w-5xl mx-auto py-24 px-4">
-      <h2 className="text-3xl font-bold mb-8 flex items-center gap-2">
-        <BriefcaseIcon className="h-8 w-8" />
-        Professional Experience
-      </h2>
-      
-      <div className="space-y-12">
+    <Section 
+      id="experience" 
+      title="Professional Experience"
+      subtitle="My journey building innovative mobile and web applications across different companies."
+    >
+      <div className="space-y-8">
         {experiences.map((exp, index) => (
-          <div key={index} className="bg-card p-6 rounded-lg border border-border">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
-              <div>
-                <h3 className="text-xl font-semibold">{exp.title}</h3>
-                <p className="text-muted-foreground font-medium">{exp.company}</p>
-              </div>
-              <div className="space-y-1 text-right">
-                <div className="flex items-center justify-end text-muted-foreground">
-                  <CalendarIcon className="h-4 w-4 mr-1" />
-                  <span>{exp.period}</span>
+          <Card key={index} className="overflow-hidden border border-secondary/50 bg-secondary/10 backdrop-blur-sm">
+            <CardContent className="p-6">
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+                <div>
+                  <h3 className="text-xl font-semibold">{exp.title}</h3>
+                  <p className="text-primary/80 font-medium">{exp.company}</p>
                 </div>
-                <div className="flex items-center justify-end text-muted-foreground text-sm">
-                  <MapPinIcon className="h-4 w-4 mr-1" />
-                  <span>{exp.location}</span>
-                </div>
-              </div>
-            </div>
-            
-            <ul className="list-disc list-inside space-y-2 mb-4">
-              {exp.description.map((item, i) => (
-                <li key={i} className="text-muted-foreground">
-                  <span className="text-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
-            
-            {exp.technologies && (
-              <div>
-                <p className="font-medium mb-2">Technologies:</p>
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, i) => (
-                    <span key={i} className="px-3 py-1 bg-accent text-accent-foreground text-sm rounded-full">
-                      {tech}
-                    </span>
-                  ))}
+                <div className="space-y-1 md:text-right">
+                  <div className="flex items-center md:justify-end text-muted-foreground">
+                    <CalendarIcon className="h-4 w-4 mr-1" />
+                    <span>{exp.period}</span>
+                  </div>
+                  <div className="flex items-center md:justify-end text-muted-foreground text-sm">
+                    <MapPinIcon className="h-4 w-4 mr-1" />
+                    <span>{exp.location}</span>
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
+              
+              <ul className="list-disc list-inside space-y-2 mb-4 pl-1">
+                {exp.description.map((item, i) => (
+                  <li key={i} className="text-muted-foreground">
+                    <span className="text-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              {exp.technologies && (
+                <div>
+                  <p className="font-medium mb-2">Technologies:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech, i) => (
+                      <span key={i} className="px-3 py-1 bg-secondary/30 text-foreground text-sm rounded-full">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         ))}
       </div>
-    </section>
+    </Section>
   );
 };
 
-export default Experience; 
+export default Experience;

@@ -1,3 +1,5 @@
+
+import { Section } from "@/components/ui/section";
 import ProjectCard from "./ProjectCard";
 
 const projectsData = [
@@ -59,23 +61,24 @@ const projectsData = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-16 px-4 md:px-6">
-      <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-12">Featured Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projectsData.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              title={project.title}
-              description={project.description}
-              tags={project.tags}
-              link={project.link}
-              delay={index * 100}
-            />
-          ))}
-        </div>
+    <Section 
+      id="projects" 
+      title="Featured Projects"
+      subtitle="A showcase of my development work across Flutter, Web, and AI applications."
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projectsData.map((project, index) => (
+          <ProjectCard
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            tags={project.tags}
+            link={project.link}
+            delay={index * 100}
+          />
+        ))}
       </div>
-    </section>
+    </Section>
   );
 };
 
