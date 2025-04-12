@@ -20,7 +20,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <div className="bg-noise" aria-hidden="true" />
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="mx-auto">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
