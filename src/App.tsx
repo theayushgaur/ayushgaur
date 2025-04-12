@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,7 +20,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <div className="bg-noise" aria-hidden="true" />
-        <div className="max-w-screen-2xl mx-auto">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,13 +36,9 @@
     --radius: 0.5rem;
 
     --color-1: 0 100% 63%;
-
     --color-2: 270 100% 63%;
-
     --color-3: 210 100% 63%;
-
     --color-4: 195 100% 63%;
-
     --color-5: 90 100% 63%;
   }
   
@@ -93,6 +90,10 @@
     @apply border-border;
   }
 
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -132,6 +133,16 @@
   main, header, footer {
     position: relative;
     z-index: 10;
+  }
+  
+  /* Consistent spacing */
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+  
+  /* Card styling */
+  .card-gradient {
+    @apply bg-gradient-to-b from-secondary/30 to-secondary/10 backdrop-blur-sm border border-white/10;
   }
 }
 
