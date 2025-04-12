@@ -14,11 +14,11 @@ export function Section({ id, title, className, children, subtitle }: SectionPro
   return (
     <section id={id} className="py-24 px-4 w-full max-w-6xl mx-auto">
       <div className={cn("container mx-auto", className)}>
-        <div className="mb-16">
+        <div className="mb-16 max-w-3xl">
           <div className="inline-block px-4 py-1.5 mb-4 rounded-full bg-secondary/50 backdrop-blur-sm border border-secondary/30">
             <span className="text-sm font-medium text-foreground">{title}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold">{title}</h2>
+          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">{title}</h2>
           {subtitle && <p className="mt-4 text-xl text-muted-foreground max-w-2xl">{subtitle}</p>}
         </div>
         {children}

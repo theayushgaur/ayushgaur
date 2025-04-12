@@ -1,7 +1,7 @@
 
 import { Section } from "@/components/ui/section";
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Laptop, Tools } from "lucide-react";
+import { Code, Laptop, Wrench } from "lucide-react";
 
 const Skills = () => {
   return (
@@ -11,7 +11,7 @@ const Skills = () => {
       subtitle="My technical toolkit and areas of specialization."
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm">
+        <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-300">
           <CardContent className="p-6">
             <div className="mb-4 flex items-center gap-2">
               <Code className="h-5 w-5 text-primary" />
@@ -27,10 +27,10 @@ const Skills = () => {
           </CardContent>
         </Card>
         
-        <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm">
+        <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-300">
           <CardContent className="p-6">
             <div className="mb-4 flex items-center gap-2">
-              <Tools className="h-5 w-5 text-primary" />
+              <Wrench className="h-5 w-5 text-primary" />
               <h3 className="text-xl font-bold">Developer Tools</h3>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -46,7 +46,7 @@ const Skills = () => {
           </CardContent>
         </Card>
         
-        <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm">
+        <Card className="border border-secondary/50 bg-secondary/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-300">
           <CardContent className="p-6">
             <div className="mb-4 flex items-center gap-2">
               <Laptop className="h-5 w-5 text-primary" />
@@ -63,7 +63,7 @@ const Skills = () => {
         </Card>
       </div>
       
-      <Card className="mt-8 border border-secondary/50 bg-secondary/10 backdrop-blur-sm">
+      <Card className="mt-8 border border-secondary/50 bg-secondary/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-300">
         <CardContent className="p-6">
           <h3 className="text-xl font-bold mb-4">Certifications</h3>
           <div className="space-y-3">
